@@ -12,7 +12,6 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules/")
 
 if(WIN32)
 	set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
-	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:CONSOLE")
 endif(WIN32)
 
 link_directories(${CMAKE_SOURCE_DIR}/lib)
@@ -21,7 +20,7 @@ list(APPEND CMAKE_CXX_FLAGS "-std=c++11")
 
 # find the required packages
 find_package(GLM REQUIRED)
-message(STATUS "GLM include at ${GL_INCLUDE_DIR}")
+message(STATUS "GLM included at ${GLM_INCLUDE_DIR}")
 find_package(GLFW3 REQUIRED)
 message(STATUS "Found GLFW3 in ${GLFW3_INCLUDE_DIR}")
 find_package(ASSIMP REQUIRED)
@@ -35,7 +34,7 @@ elseif(UNIX AND NOT APPLE)
 	add_definitions(${OPENGL_DEFINITIONS})
 	find_package(X11 REQUIRED)
 	# note that the order is important for setting the libs
-	# use pkg-config --libs $(pkg-config --print-requires --print-requires-private glfw3) in a terminatal to confirm
+	# use pkg-config --libs $(pkg-config --print-requires --print-requires-private glfw3) in a terminal to confirm
 	set(LIBS ${GLFW3_LIBRARY} X11 Xrandr Xinerama Xi Xxf86vm Xcursor GL dl pthread ${ASSIMP_LIBRARY})
 	set(CMAKE_CXX_LINK_EXECUTABLE "${CMAKE_CXX_LINK_EXECUTABLE} -ldl")
 elseif(APPLE)
@@ -108,9 +107,10 @@ foreach(CHAPTER ${CHAPTERS})
 		
 		foreach(SHADER ${SHADERS})
 			if(WIN32)
-				add_custom_command(TARGET ${NAME} PRE_BUILD ${CMAKE_COMMAND} -E copy ${SHADER} $<TARGET_FILE_DIR:${NAME}>)
+				# configure_file(${SHADER} "test")
+				add_custom_command(TARGET ${NAME} PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${SHADER} $<TARGET_FILE_DIR:${NAME}>)
 			elseif(UNIX AND NOT APPLE)
-				file(COPY ${SHADER} DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/bin/${NAME})
+				file(COPY ${SHADER} DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/bin/${CHAPTER})
 			elseif(APPLE)
 				# create symbolic link for *.vs *.fs *.gs
 				get_filename_component(SHADERNAME ${SHADER} NAME)
