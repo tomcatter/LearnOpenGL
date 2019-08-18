@@ -1,4 +1,4 @@
-# FindGLW - attempts to locate the glm matrix/vector library
+# FindGLM - attempts to locate the glm matrix/vector library
 #
 # This module defines the following variables (on success):
 # GLM_INCLUDE_DIRS - where to find glm/glm.hpp
@@ -9,7 +9,7 @@
 # GLM_ROOT_DIR - root directory of a glm installation
 # Headers are expected to be found in either:
 # <GLM_ROOT_DIR>/glm/glm.hpp OR
-# <GLM_ROOT_DIR/include/glm/glm.hpp
+# <GLM_ROOT_DIR>/include/glm/glm.hpp
 # This variable can either be a cmake or environment
 # variable. Note however that changing the value
 # of the environment variable will NOT result in 
@@ -43,7 +43,8 @@ FIND_PATH(GLM_INCLUDE_DIR "glm/glm.hpp"
 PATHS ${_glm_HEADER_SEARCH_DIRS}
 )
 INCLUDE(FindPackageHandleStandardArGS)
-FIND_PACKAGE_HANDLE_STANDARD_ARGS(GLM DEFAULT_MSG GLM_INCLUDE_DIR)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(GLM DEFAULT_MSG 
+GLM_INCLUDE_DIR)
 if(GLM_FOUND)
 	set(GLM_INCLUDE_DIRS "${GLM_INCLUDE_DIR}")
 	message(STATUS "GLM_INCLUDE_DIR = ${GLM_INCLUDE_DIR}")
