@@ -13,7 +13,7 @@ const unsigned int SCR_HEIGHT = 600;
 
 
 const char* vertexShaderSource = "#version 330 core\n"
-"layout (location = 0) in vec3 aPos;\n"
+"layout (location = 1) in vec3 aPos;\n"
 "void main()\n"
 "{\n"
 "	gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
@@ -137,17 +137,15 @@ int main()
 	glEnableVertexAttribArray(aPosAttrib);
 	glVertexAttribPointer(aPosAttrib, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 
+	// You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, 
+	// but this rarely happens. Modifying other VAOs requires a call to glBindVertexArray anyways 
+	// so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
+	glBindVertexArray(0);
 
 	// note that this is a allowed, the call to glVertexAttribPoint registered VBO
 	// as the vertex attribute's bound vertex buffer object so afterwards we can safely
 	// unbind
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-
-	// You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, 
-	// but this rarely happens. Modifying other VAOs requires a call to glBindVertexArray anyways 
-	// so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
-	//glBindVertexArray(0);
 
 	// uncomment this call to draw in wireframe polygons
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -171,13 +169,17 @@ int main()
 		
 		//glEnableVertexAttribArray(aPosAttrib);
 
-		glBindBuffer(GL_ARRAY_BUFFER, VBO);
+		//glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
 		//glVertexAttribPointer(aPosAttrib, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 
-		glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
+		// seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
+		glBindVertexArray(VAO); 
+
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 
+		// glBindVertexArray(0); // no need to unbind it every time 
+		
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse move etc.)
 		// ------------------------------------------------------------------------------
 		glfwSwapBuffers(window);
