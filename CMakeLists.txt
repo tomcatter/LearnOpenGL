@@ -62,6 +62,7 @@ set(1.getting_started
 	2.1.hello_triangle
 	2.2.hello_triangle_indexed
 	2.3.hello_triangle_exercise1
+	2.4.hello_triangle_exercise2
 )
 
 configure_file(configuration/root_directory.h.in configuration/root_directory.h)
