@@ -13,18 +13,22 @@ const unsigned int SCR_HEIGHT = 600;
 
 
 const char* vertexShaderSource = "#version 330 core\n"
-"layout (location = 1) in vec3 aPos;\n"
+"layout (location = 0) in vec3 aPos;\n"
+"layout (location = 1) in vec3 aColor;\n "
+"out vec3 ourColor;\n"
 "void main()\n"
 "{\n"
 "	gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+"	ourColor = aColor;\n"
 "}\n\0";
 
 const char* fragmentShaderSource = "#version 330 core\n"
 "out vec4 FragColor;\n"
-"uniform vec4 ourColor;\n"
+"in vec3 ourColor;\n"
+"uniform float r;\n"
 "void main()\n"
 "{\n"
-"	FragColor = ourColor;\n"
+"	FragColor = vec4(ourColor.r + r, ourColor.g, ourColor.b, 1.0f);\n"
 "}\n";
 
 
@@ -118,9 +122,9 @@ int main()
 	// set up vertex data (and buffers) and configure vertex attributes
 	// ----------------------------------------------------------------
 	float vertices[] = {
-		-0.5f, -0.5f, 0.0f,
-		0.5f, -0.5f, 0.0f,
-		0.0f, 0.5f, 0.0f,
+		-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
+		0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
+		0.0f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f
 	};
 
 	unsigned int VBO, VAO;
@@ -136,7 +140,11 @@ int main()
 
 	int aPosAttrib = glGetAttribLocation(shaderProgram, "aPos");
 	glEnableVertexAttribArray(aPosAttrib);
-	glVertexAttribPointer(aPosAttrib, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	glVertexAttribPointer(aPosAttrib, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+
+	int aColorAttrib = glGetAttribLocation(shaderProgram, "aColor");
+	glEnableVertexAttribArray(aColorAttrib);
+	glVertexAttribPointer(aColorAttrib, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
 
 	// You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, 
 	// but this rarely happens. Modifying other VAOs requires a call to glBindVertexArray anyways 
@@ -170,11 +178,11 @@ int main()
 
 
 		float timeValue = glfwGetTime();
-		float greenValue = sin(timeValue) / 2.0f + 0.5f;
-		int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
-		glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
+		float redValue = sin(timeValue) / 2.0f + 0.5f;
+		int vertexColorLocation = glGetUniformLocation(shaderProgram, "r");
+		glUniform1f(vertexColorLocation, redValue);
 		// seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
-		//glBindVertexArray(VAO);
+		glBindVertexArray(VAO);
 
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 
