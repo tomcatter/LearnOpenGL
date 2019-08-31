@@ -71,6 +71,7 @@ set(1.getting_started
 	4.2.textures_combined
 	4.3.textures_exercise2
 	4.4.textures_exercise3
+	4.5.textures_exercise4
 )
 
 configure_file(configuration/root_directory.h.in configuration/root_directory.h)
