@@ -74,6 +74,7 @@ set(1.getting_started
 	4.5.textures_exercise4
 	5.1.transformations
 	5.2.transformations_exercise2
+	6.1.coordinate_systems
 )
 
 configure_file(configuration/root_directory.h.in configuration/root_directory.h)
