@@ -72,40 +72,40 @@ int main()
 	float vertices[] = {
 		// position           // texture coords
 		// Vertex data for face 0
-		-1.0f, -1.0f, 1.0f,   0.0f, 0.0f,  // v0
-		1.0f, -1.0f, 1.0f,    1.0f, 0.0f, // v1
-		-1.0f,  1.0f, 1.0f,   0.0f, 1.0f,  // v2
-		1.0f,  1.0f, 1.0,     1.0f, 1.0f, // v3
+		-0.5f, -0.5f, -0.5f,   0.0f, 0.0f,  // v0
+		0.5f, -0.5f, -0.5f,    1.0f, 0.0f, // v1
+		-0.5,  0.5f, -0.5f,    0.0f, 1.0f,  // v2
+		0.5f,  0.5f, -0.5f,    1.0f, 1.0f, // v3
 
 		// Vertex data for face 1
-		1.0f, -1.0f,  1.0f,   0.0f, 1.0f, // v4
-		1.0f, -1.0f, -1.0f,   0.0f, 0.0f, // v5
-		1.0f,  1.0f,  1.0f,   0.0f, 1.0f,  // v6
-		1.0f,  1.0f, -1.0f,   1.0f, 1.0f, // v7
+		0.5f, -0.5f,  0.5f,   0.0f, 1.0f, // v4
+		0.5f, -0.5f, -0.5f,   0.0f, 0.0f, // v5
+		0.5f,  0.5f,  0.5f,   1.0f, 0.0f,  // v6
+		0.5f,  0.5f, -0.5f,   1.0f, 1.0f, // v7
 
 		// Vertex data for face 2
-		1.0f, -1.0f, -1.0f,  0.66f, 0.5f, // v8
-		-1.0f, -1.0f, -1.0f, 1.0f, 0.5f,  // v9
-		1.0f,  1.0f, -1.0f,  0.66f, 1.0f, // v10
-		-1.0f,  1.0f, -1.0f, 1.0f, 1.0f,  // v11
+		0.5f, -0.5f, -0.5f,  0.66f, 0.5f, // v8
+		-0.5f, -0.5f, -0.5f, 1.0f, 0.5f,  // v9
+		0.5f,  0.5f, -0.5f,  0.66f, 1.0f, // v10
+		-0.5f,  0.5f, -0.5f, 1.0f, 1.0f,  // v11
 
 		// Vertex data for face 3
-		-1.0f, -1.0f, -1.0f, 0.66f, 0.0f, // v12
-		-1.0f, -1.0f,  1.0f, 1.0f, 0.0f,  // v13
-		-1.0f,  1.0f, -1.0f, 0.66f, 0.5f, // v14
-		-1.0f,  1.0f,  1.0f, 1.0f, 0.5f,  // v15
+		-0.5f, -0.5f, -0.5f, 0.66f, 0.0f, // v12
+		-0.5f, -0.5f,  0.5f, 1.0f, 0.0f,  // v13
+		-0.5f,  0.5f, -0.5f, 0.66f, 0.5f, // v14
+		-0.5f,  0.5f,  0.5f, 1.0f, 0.5f,  // v15
 
 		// Vertex data for face 4
-		-1.0f, -1.0f, -1.0f,  0.33f, 0.0f, // v16
-		1.0f, -1.0f, -1.0f,   0.66f, 0.0f, // v17
-		-1.0f, -1.0f,  1.0f,  0.33f, 0.5f, // v18
-		1.0f, -1.0f,  1.0f,   0.66f, 0.5f, // v19
+		-0.5f, -0.5f, -0.5f,  0.33f, 0.0f, // v16
+		0.5f, -0.5f, -0.5f,   0.66f, 0.0f, // v17
+		-0.5f, -0.5f,  0.5f,  0.33f, 0.5f, // v18
+		0.5f, -0.5f,  0.5f,   0.66f, 0.5f, // v19
 
 		// Vertex data for face 5
-		-1.0f,  1.0f,  1.0f,  0.33f, 0.5f, // v20
-		1.0f,  1.0f,  1.0f,   0.66f, 0.5f, // v21
-		-1.0f,  1.0f, -1.0f,  0.33f, 1.0f, // v22
-		1.0f,  1.0f, -1.0f,   0.66f, 1.0f  // v23
+		-0.5f,  0.5f,  0.5f,  0.33f, 0.5f, // v20
+		0.5f,  0.5f,  0.5f,   0.66f, 0.5f, // v21
+		-0.5f,  0.5f, -0.5f,  0.33f, 1.0f, // v22
+		0.5f,  0.5f, -0.5f,   0.66f, 1.0f  // v23
 	};
 
 	unsigned int indices[] = {
@@ -247,7 +247,7 @@ int main()
 		model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
 		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
 
-		projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.f, 100.0f);
+		projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
 		// get matrix's uniform location and set matrix
 		unsigned int modelLoc = glGetUniformLocation(ourShader.ID, "model");
 		unsigned int viewLoc = glGetUniformLocation(ourShader.ID, "view");
@@ -259,7 +259,7 @@ int main()
 
 		ourShader.use();
 		glBindVertexArray(VAO);
-		glDrawElements(GL_TRIANGLES, 34, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLE_STRIP, 34, GL_UNSIGNED_INT, 0);
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse move etc.)
 		// ------------------------------------------------------------------------------
