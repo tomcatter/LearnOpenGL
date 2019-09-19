@@ -54,6 +54,7 @@ endif(WIN32)
 
 set(CHAPTERS
 	1.getting_started
+	2.lighting
 )
 
 set(1.getting_started
@@ -76,6 +77,10 @@ set(1.getting_started
 	5.2.transformations_exercise2
 	6.1.coordinate_systems
 	6.2.coordinate_systems_depth
+)
+
+set(2.lighting
+	1.colors
 )
 
 configure_file(configuration/root_directory.h.in configuration/root_directory.h)
