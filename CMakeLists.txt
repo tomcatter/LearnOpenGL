@@ -78,6 +78,7 @@ set(1.getting_started
 	6.1.coordinate_systems
 	6.2.coordinate_systems_depth
 	6.3.coordinate_systems_multiple
+	7.1.camera_circle
 )
 
 set(2.lighting
