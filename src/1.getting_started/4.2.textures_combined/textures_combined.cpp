@@ -30,8 +30,8 @@ int main()
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // uncomment this statement to fix compilation on OS X
 #endif
 
-														 // GLFW window creation
-														 // --------------------
+	// GLFW window creation
+	// --------------------
 	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "textures_combination", NULL, NULL);
 	if (!window)
 	{
