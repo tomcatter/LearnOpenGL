@@ -80,6 +80,7 @@ set(1.getting_started
 	6.3.coordinate_systems_multiple
 	7.1.camera_circle
 	7.2.camera_keyboard_dt
+	7.3.camera_mouse_zoom
 )
 
 set(2.lighting
