@@ -55,6 +55,7 @@ endif(WIN32)
 set(CHAPTERS
 	1.getting_started
 	2.lighting
+	game
 )
 
 set(1.getting_started
@@ -85,6 +86,10 @@ set(1.getting_started
 
 set(2.lighting
 	1.colors
+)
+
+set(game
+	snake
 )
 
 configure_file(configuration/root_directory.h.in configuration/root_directory.h)
