@@ -17,17 +17,32 @@
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 
+void mouse_callback(GLFWwindow *window, double xPos, double yPos);
+
+void scroll_callback(GLFWwindow *window, double xOffset, double yOffset);
+
 void processInput(GLFWwindow *window);
 
 // 窗口大小
 const unsigned int SRC_WIDTH = 800;
 const unsigned int SRC_HEIGHT = 600;
 
-
 // 相机相关坐标
 glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
 glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+
+
+bool firstMouse = true;
+
+// 偏航
+float yaw = -90.0f;
+// 俯仰
+float pitch = 0.0f;
+
+float lastX = 800.0f / 2.0f;
+float lastY = 600.0f / 2.0f;
+float fov = 45.0f;
 
 //
 float deltaTime = 0.0f; // 当前帧与上一帧的时间差
@@ -61,6 +76,11 @@ int main() {
     // OpenGL本身是一个巨大的状态机，
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glfwSetCursorPosCallback(window, mouse_callback);
+    glfwSetScrollCallback(window, scroll_callback);
+
+    // 设置捕获鼠标
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     // glad用于管理所有OpenGL的指针函数
     if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress)) {
@@ -72,7 +92,7 @@ int main() {
     glEnable(GL_DEPTH_TEST);
 
     // 编译生成着色程序
-    Shader ourShader("7.2.camera.vert", "7.2.camera.frag");
+    Shader ourShader("7.3.camera.vert", "7.3.camera.frag");
 
     float vertices[] = {
             // 顶点坐标                         // 纹理坐标
@@ -202,8 +222,7 @@ int main() {
     ourShader.use();
 
     glm::mat4 projection = glm::mat4(1.0f);
-    projection = glm::perspective(glm::radians(45.0f),
-                                  (float) SRC_WIDTH / (float) SRC_HEIGHT, 0.1F, 100.0f);
+
 
     while (!glfwWindowShouldClose(window)) {
 
@@ -224,6 +243,8 @@ int main() {
         glm::mat4 view = glm::mat4(1.0f);
         view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 
+        projection = glm::perspective(glm::radians(fov),
+                                      (float) SRC_WIDTH / (float) SRC_HEIGHT, 0.1F, 100.0f);
 
         glBindTexture(GL_TEXTURE_2D, texture);
         ourShader.use();
@@ -287,6 +308,53 @@ void processInput(GLFWwindow *window) {
     }
 }
 
+void mouse_callback(GLFWwindow *window, double xPosIn, double yPosIn) {
+    float xPos = static_cast<float>(xPosIn);
+    float yPos = static_cast<float>(yPosIn);
+
+    if (firstMouse) {
+        lastX = xPos;
+        lastY = yPos;
+        firstMouse = false;
+    }
+
+    float xOffset = lastX - xPos;
+    float yOffset = yPos - lastY;
+
+    lastX = xPos;
+    lastY = yPos;
+
+    float sensitivity = 0.1f;
+
+    xOffset *= sensitivity;
+    yOffset *= sensitivity;
+
+    yaw += xOffset;
+    pitch += yOffset;
+
+    if (pitch > 89.0f) {
+        pitch = 89.0f;
+    }
+    if (pitch < -89.0f) {
+        pitch = -89.0f;
+    }
+
+    glm::vec3 front(0.0f, 0.0f, -1.0f);
+    front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+    front.y = sin(glm::radians((pitch)));
+    front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+    cameraFront = glm::normalize(front);
+}
+
+void scroll_callback(GLFWwindow *window, double xOffset, double yOffset) {
+    fov -= (float) yOffset;
+    if (fov < 1.0f) {
+        fov = 1.0f;
+    }
+    if (fov > 45.0f) {
+        fov = 45.0f;
+    }
+}
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
     glViewport(0, 0, width, height);
