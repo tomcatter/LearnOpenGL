@@ -54,6 +54,7 @@ endif(WIN32)
 
 set(CHAPTERS
         1.getting_started
+        2.lighting
 )
 
 set(1.getting_started
@@ -91,7 +92,19 @@ set(1.getting_started
 )
 
 set(2.lighting
-        
+        1.color
+        2.1.basic_lighting_diffuse
+        2.2.basic_lighting_specular
+        2.3.basic_lighting_exercise1
+        2.4.basic_lighting_exercise2
+        2.5.basic_lighting_exercise3
+        3.1.materials
+        3.2.material_exercise1
+        4.1.lighting_maps_diffuse_map
+        4.2.lighting_maps_specular_map
+        4.3.lighting_maps_exercise2
+        4.4.lighting_maps_exercise3
+        4.5.lighting_maps_exercise4
 )
 
 # 将文件从一个地方复制到另一个地方并修改内容
