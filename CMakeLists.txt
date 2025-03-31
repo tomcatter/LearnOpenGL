@@ -105,6 +105,12 @@ set(2.lighting
         4.3.lighting_maps_exercise2
         4.4.lighting_maps_exercise3
         4.5.lighting_maps_exercise4
+        5.1.light_casters_directional
+        5.2.light_casters_point
+        5.3.light_casters_spot
+        5.4.light_casters_spot_soft
+        6.1.multiple_lights
+        6.2.multiple_lights_exercise1
 )
 
 # 将文件从一个地方复制到另一个地方并修改内容
