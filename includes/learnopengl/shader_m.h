@@ -2,8 +2,8 @@
 // Created by tom on 2025/3/8.
 //
 
-#ifndef LEARNOPENGL_SHADER_M_H
-#define LEARNOPENGL_SHADER_M_H
+#ifndef LEARNOPENGL_SHADER_H
+#define LEARNOPENGL_SHADER_H
 
 
 #include <string>

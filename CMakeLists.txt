@@ -55,6 +55,7 @@ endif(WIN32)
 set(CHAPTERS
         1.getting_started
         2.lighting
+        3.model_loading
 )
 
 set(1.getting_started
@@ -111,6 +112,11 @@ set(2.lighting
         5.4.light_casters_spot_soft
         6.1.multiple_lights
         6.2.multiple_lights_exercise1
+)
+
+
+set(3.model_loading
+        1.model_loading
 )
 
 # 将文件从一个地方复制到另一个地方并修改内容

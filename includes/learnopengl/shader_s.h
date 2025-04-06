@@ -2,8 +2,8 @@
 // Created by tom on 2025/2/27.
 //
 
-#ifndef LEARNOPENGL_SHADER_S_H
-#define LEARNOPENGL_SHADER_S_H
+#ifndef LEARNOPENGL_SHADER_H
+#define LEARNOPENGL_SHADER_H
 
 #include <string>
 #include <iostream>
@@ -117,4 +117,4 @@ public :
 };
 
 
-#endif //LEARNOPENGL_SHADER_S_H
+#endif //LEARNOPENGL_SHADER_H
