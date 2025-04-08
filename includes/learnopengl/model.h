@@ -154,7 +154,7 @@ private:
         return Mesh(vertices, indices, textures);
     }
 
-    std::vector<Texture> loadMaterialTextures(aiMaterial *mat, aiTextureType type, std::string typeName) {
+    std::vector<Texture> loadMaterialTextures(aiMaterial *mat, aiTextureType type, const std::string& typeName) {
         std::vector<Texture> textures;
         for (int i = 0; i < mat->GetTextureCount(type); i++) {
             aiString str;
