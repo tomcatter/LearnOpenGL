@@ -1,5 +1,5 @@
 //
-// Created by tom on 2025/4/7.
+// Created by tom on 2025/4/9.
 //
 #include <iostream>
 
@@ -73,7 +73,7 @@ int main() {
     // 开启深度测试
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
-    Shader shader("1.1.depth_testing.vert", "1.1.depth_testing.frag");
+    Shader shader("1.2.depth_testing.vert", "1.2.depth_testing.frag");
 
     float cubeVertices[] = {
             // positions          // texture Coords
@@ -213,6 +213,7 @@ int main() {
     glDeleteVertexArrays(1, &planeVAO);
     glDeleteBuffers(1, &cubeVBO);
     glDeleteBuffers(1, &planeVBO);
+
     glfwTerminate();
     return 0;
 }
