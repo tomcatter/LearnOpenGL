@@ -135,6 +135,14 @@ set(LIBS ${LIBS} STB_IMAGE)
 add_library(GLAD "src/glad.c")
 set(LIBS ${LIBS} GLAD)
 
+# imgui library
+set(IMGUI_DIR "${CMAKE_SOURCE_DIR}/includes/imgui")
+file(GLOB IMGUI_SOURCES ${IMGUI_DIR}/*.cpp ${IMGUI_DIR}/backends/imgui_impl_opengl3.cpp ${IMGUI_DIR}/backends/imgui_impl_glfw.cpp)
+add_library(ImGui ${IMGUI_SOURCES})
+target_link_libraries(ImGui glfw3)
+target_include_directories(ImGui PUBLIC ${IMGUI_DIR})
+set(LIBS ${LIBS} ImGui)
+
 macro(makeLink src dest target)
     add_custom_command(TARGET ${target} POST_BUILD COMMAND ${CMAKE_COMMAND} -E create_symlink ${src} ${dest} DEPENDS ${dest} COMMENT "mklink ${src} -> ${dest}")
 endmacro()
