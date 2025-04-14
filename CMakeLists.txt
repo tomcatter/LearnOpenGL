@@ -123,6 +123,7 @@ set(3.model_loading
 set(4.advanced_opengl
         1.1.depth_testing
         1.2.depth_testing_view
+        2.stencil_testing
 )
 
 # 将文件从一个地方复制到另一个地方并修改内容
