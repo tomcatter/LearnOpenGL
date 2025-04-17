@@ -125,6 +125,7 @@ set(4.advanced_opengl
         1.2.depth_testing_view
         2.stencil_testing
         3.1.blending_discard
+        3.2.blending_sort
 )
 
 # 将文件从一个地方复制到另一个地方并修改内容
