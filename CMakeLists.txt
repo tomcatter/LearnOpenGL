@@ -126,6 +126,7 @@ set(4.advanced_opengl
         2.stencil_testing
         3.1.blending_discard
         3.2.blending_sort
+        5.1.framebuffers
 )
 
 # 将文件从一个地方复制到另一个地方并修改内容
