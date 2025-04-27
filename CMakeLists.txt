@@ -128,6 +128,7 @@ set(4.advanced_opengl
         3.2.blending_sort
         5.1.framebuffers
         5.2.framebuffers_exercise1
+        5.3.framebuffers_exercise2
 )
 
 # 将文件从一个地方复制到另一个地方并修改内容
