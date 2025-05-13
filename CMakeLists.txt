@@ -130,6 +130,7 @@ set(4.advanced_opengl
         5.2.framebuffers_exercise1
         5.3.framebuffers_exercise2
         6.1.cubemaps_skybox
+        6.2.cubemaps_environment_mapping
 )
 
 # 将文件从一个地方复制到另一个地方并修改内容
