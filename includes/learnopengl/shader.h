@@ -77,7 +77,7 @@ public:
         if (geometryPath != nullptr) {
             geometry = glCreateShader(GL_GEOMETRY_SHADER);
             const char *gShaderCode = geometryCode.c_str();
-            glShaderSource(geometry, &gShaderCode, nullptr);
+            glShaderSource(geometry, 1, &gShaderCode, nullptr);
             glCompileShader(geometry);
             this->checkCompileErrors(geometry, "GEOMETRY");
         }

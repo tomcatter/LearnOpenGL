@@ -132,6 +132,7 @@ set(4.advanced_opengl
         6.1.cubemaps_skybox
         6.2.cubemaps_environment_mapping
         8.advanced_glsl_ubo
+        9.1.geometry_shader_houses
 )
 
 # 将文件从一个地方复制到另一个地方并修改内容
@@ -163,6 +164,7 @@ function(create_project_from_source chapter demo)
             "src/${chapter}/${demo}/*.cpp"
             "src/${chapter}/${demo}/*.vert"
             "src/${chapter}/${demo}/*.frag"
+            "src/${chapter}/${demo}/*.geom"
             "src/${chapter}/${demo}/*.tcs"
             "src/${chapter}/${demo}/*.tes"
             "src/${chapter}/${demo}/*.gs"
@@ -200,6 +202,7 @@ function(create_project_from_source chapter demo)
     file(GLOB SHADERS
             "src/${chapter}/${demo}/*.vert"
             "src/${chapter}/${demo}/*.frag"
+            "src/${chapter}/${demo}/*.geom"
             "src/${chapter}/${demo}/*.tcs"
             "src/${chapter}/${demo}/*.tes"
             "src/${chapter}/${demo}/*.gs"
