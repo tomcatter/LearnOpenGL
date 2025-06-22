@@ -134,6 +134,7 @@ set(4.advanced_opengl
         8.advanced_glsl_ubo
         9.1.geometry_shader_houses
         10.1.instancing_quads
+        10.2.instancing_array
 )
 
 # 将文件从一个地方复制到另一个地方并修改内容
