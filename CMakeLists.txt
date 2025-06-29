@@ -136,6 +136,7 @@ set(4.advanced_opengl
         10.1.instancing_quads
         10.2.instancing_array
         10.3.asteroids
+        10.4.asteroids_instanced
 )
 
 # 将文件从一个地方复制到另一个地方并修改内容
